@@ -12,7 +12,7 @@
 <body>
     <header>
         <h1 class="text-5xl text-center mt-8">Let's get some <span
-                class="font-semibold	text-purple-600">Moooooney</span>!!!</h1>
+                class="font-semibold text-purple-600">Moooooney</span>!!!</h1>
     </header>
     <main class="w-3/4 mx-auto">
         <!-- Balance and Transaction -->
@@ -57,7 +57,31 @@
             </div>
         </section>
     </main>
-    <script src="js/banking.js"></script>
+    <script src="js/functional.js"></script>
+    <script>
+
+        function getInputValue(fieldId) {
+            const inputField = document.getElementById(fieldId);
+            const valueInText = inputField.value;
+            const value = parseFloat(valueInText).toFixed(2);
+            inputField.value = '';
+            return value;
+        }
+
+        function updatTotal(fieldId, amount) {
+            const totalTag = document.getElementById(fieldId);
+            const previousTotalInText = totalTag.innerText;
+            const previousTotal = parseFloat(previousTotalInText).toFixed(2);
+            const newTotal = previousTotal + amount;
+            totalTag.innerText = newTotal;
+        }
+
+        document.getElementById('deposit-button').addEventListener('click', function () {
+            const amount = getInputValue('deposit-input');
+            updatTotal('deposit-total');
+        })
+
+    </script>
 </body>
 
 </html>
